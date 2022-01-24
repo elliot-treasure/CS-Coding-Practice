@@ -12,3 +12,17 @@ C:\Users\ellio\source\repos\Dailies\Dailies\obj\Debug\netcoreapp3.1\Dailies.cspr
 C:\Users\ellio\source\repos\Dailies\Dailies\obj\Debug\netcoreapp3.1\Dailies.dll
 C:\Users\ellio\source\repos\Dailies\Dailies\obj\Debug\netcoreapp3.1\Dailies.pdb
 C:\Users\ellio\source\repos\Dailies\Dailies\obj\Debug\netcoreapp3.1\Dailies.genruntimeconfig.cache
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.exe
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.deps.json
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.runtimeconfig.json
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.runtimeconfig.dev.json
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.dll
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\bin\Debug\netcoreapp3.1\Dailies.pdb
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.csproj.AssemblyReference.cache
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.AssemblyInfoInputs.cache
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.AssemblyInfo.cs
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.csproj.CoreCompileInputs.cache
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.dll
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.pdb
+C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.genruntimeconfig.cache

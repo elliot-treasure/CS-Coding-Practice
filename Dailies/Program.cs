@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Globalization; // Jaden Case Converter
 
 /// <summary>
 /// Hello! This project is intended for the express purpose of practicing coding as often as possible, as well as getting into good habits such as pushing to github.
@@ -29,9 +30,10 @@ namespace Dailies
                     int[] X = { 1, 2 };
                     StepClimber(N, X);
                     break;
-                case 2: // Jaden Smith casing | kek
+                case 2: // Jaden Smith casing | kek | COMPLETED - well done me
                     string phrase = "You win some you lose some.";
-                    Console.WriteLine(ToJadenCase(phrase));
+                    // Console.WriteLine(ToJadenCase(phrase));
+                    Console.WriteLine(ToJadenCaseOneliner(phrase));
                     break;
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
@@ -40,7 +42,7 @@ namespace Dailies
 
         }
 
-        // Problem Number One
+        #region Amazon Interview Question - Steps of steps on steps
         static void StepClimber(int n, int[] x)
         {
             // Console.WriteLine("Day one's a bit too easy, but time should make this more interesting.");
@@ -81,7 +83,9 @@ namespace Dailies
              * 
              */
         }
-        // 1/24/2022
+        #endregion
+
+        #region Jaden Case Converter - 1/24/2022
         /*
          * Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). 
          * Jaden is also known for some of his philosophy that he delivers via Twitter. When writing on Twitter, he is known for 
@@ -89,7 +93,7 @@ namespace Dailies
          * Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, 
          * but they are not capitalized in the same way he originally typed them.
          */
-        
+
         static string ToJadenCase(this string phrase)
         {
             // Garbage in garbage out, lets clean this up first with some guards
@@ -97,7 +101,10 @@ namespace Dailies
             { 
                 Console.WriteLine($"You have entered in {phrase} which appears to be an empty string. Please provide a sentance."); 
                 return phrase;  
-            } 
+            }
+
+            // This is what we're going to give them back
+            string rPhrase = "";
 
             // First we need to split up the sentence into bite sized peices, in this case separating by whitespace
             string[] subs = phrase.Split(' '); // https://docs.microsoft.com/en-us/dotnet/api/system.string.split?view=net-6.0
@@ -105,10 +112,16 @@ namespace Dailies
             // For each of the "substrings" (words) we want to capitalize the first letter and ONLY the first letter
             foreach (var sub in subs)
             {
-                Console.WriteLine($"{sub}");
+                string s = char.ToUpper(sub[0]) + sub.Substring(1);
+                rPhrase += s;
+                rPhrase += " ";
             }
-            return "";
+            return rPhrase.TrimEnd();
         }
-        
+        static string ToJadenCaseOneliner(this string phrase)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(phrase);
+        }
+        #endregion
     }
 }
