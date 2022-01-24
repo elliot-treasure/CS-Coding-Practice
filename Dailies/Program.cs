@@ -31,9 +31,9 @@ namespace Dailies
                     StepClimber(N, X);
                     break;
                 case 2: // Jaden Smith casing | kek | COMPLETED - well done me
-                    string phrase = "You win some you lose some.";
-                    // Console.WriteLine(ToJadenCase(phrase));
-                    Console.WriteLine(ToJadenCaseOneliner(phrase));
+                    string phrase = "if everybody in the wold dropped out of school we would have a much more intelligent society.";
+                    Console.WriteLine(ToJadenCase(phrase));
+                    // Console.WriteLine(ToJadenCaseOneliner(phrase));
                     break;
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
