@@ -21,7 +21,8 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            int activeProblem = 2;
+            int activeProblem = 3;
+            string phrase = "";
 
             switch (activeProblem)
             {
@@ -31,9 +32,14 @@ namespace Dailies
                     StepClimber(N, X);
                     break;
                 case 2: // Jaden Smith casing | kek | COMPLETED - well done me
-                    string phrase = "if everybody in the wold dropped out of school we would have a much more intelligent society.";
+                    phrase = "if everybody in the wold dropped out of school we would have a much more intelligent society.";
                     Console.WriteLine(ToJadenCase(phrase));
                     // Console.WriteLine(ToJadenCaseOneliner(phrase));
+                    break;
+                case 3: // Duplicate Encoder | COMPLETED
+                    phrase = "SuCCeSS";
+                    string duplicatesFound = DetermineDuplicate(phrase);
+                    Console.WriteLine(duplicatesFound);
                     break;
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
@@ -122,6 +128,64 @@ namespace Dailies
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(phrase);
         }
+        #endregion
+
+        #region Duplicate Encoder - 1/25/2022
+        /// <summary>
+        /// The goal of today's exercise is to convert a string to a new string where each character in the new string is "(" if that character
+        /// appears only once in the original string, or ")" if that character appears more than once in the original string.
+        /// Ignore capitalization when determining if a character is a duplicate.
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        static string DetermineDuplicate(string msg)
+        {
+            string output = "";
+            string singleInput = "(";
+            string multipleInpout = ")";
+            int l = msg.Length;
+
+            // We want to ignore whether the characters are uppercase or lowercase when determining a match
+            // so it really doesn't have to be this weird mix match case we can simply make them all uniform first
+            msg = msg.ToLower();
+
+            // debugging stuffs
+            // Console.WriteLine(l);
+            // Console.WriteLine(msg);
+
+            // We're going to go through each character in the string we recieved and determine if the letter is occuring once, or more than once in the entire string.
+            // Notably this should also include spaces, for reasons??
+            // We have two loops here, the first is to go through each of the characters in the string to determine a match and the second is so we don't skip past the beginning characters.
+            
+            for (int i = 0; i < l; i++)
+            {
+                // Console.WriteLine($"i = {i} | {msg[i]}");
+                
+                // bool isDuplicate = false;
+                for (int ii = 0; ii < l; ii++)
+                {
+                    if (msg[i] == msg[ii] && i != ii)
+                    {
+                        // There is at least one other of the same character
+                        // Console.WriteLine($"we found a match! {msg[i]} = {msg[ii]}"); // debug
+                        output += multipleInpout;
+                        break;
+                    } else
+                    {
+                        // There is no other's of the same character
+                        if (ii == l-1)
+                        {
+                            // Console.WriteLine($"No match was found :("); // debug
+                            output += singleInput;
+                        }
+                    }
+                }
+                
+            }
+            
+            return output;
+        }
+
         #endregion
     }
 }
