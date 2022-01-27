@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Globalization; // Jaden Case Converter
 
 /// <summary>
@@ -21,32 +22,51 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            int activeProblem = 3;
+            Y2022 activeProblem = Y2022.Jan27th;
             string phrase = "";
 
             switch (activeProblem)
             {
-                case 1: // Number of steps | broken down into groups
+                #region Jan 2022
+                case Y2022.Jan23rd: // Number of steps | broken down into groups
                     int N = 40; // Total number of steps
                     int[] X = { 1, 2 };
                     StepClimber(N, X);
                     break;
-                case 2: // Jaden Smith casing | kek | COMPLETED - well done me
+                case Y2022.Jan24th: // Jaden Smith casing | kek | COMPLETED - well done me
                     phrase = "if everybody in the wold dropped out of school we would have a much more intelligent society.";
                     Console.WriteLine(ToJadenCase(phrase));
                     // Console.WriteLine(ToJadenCaseOneliner(phrase));
                     break;
-                case 3: // Duplicate Encoder | COMPLETED
+                case Y2022.Jan25th: // Duplicate Encoder | COMPLETED
                     phrase = "SuCCeSS";
                     string duplicatesFound = DetermineDuplicate(phrase);
                     Console.WriteLine(duplicatesFound);
                     break;
+                case Y2022.Jan27th: // Take a Ten minute Walk | COMPLETED
+                    string[] walk = { "w", "e", "w", "e", "w", "e", "w", "e", "w", "e" };
+                    // Console.WriteLine($"Was it a ten minute walk?: {IsTenMinWalk(walk)}");
+                    Console.WriteLine($"Was it a ten minute walk?: {IsValidWalkOptimized(walk)}");
+                    break;
+                #endregion
+
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
                     break;
             }
 
         }
+
+        #region Month and Day Enum
+        // by default simply assigning int values to an enum doesn't make them enum's, you need to assign a ": type" | https://www.tutorialsteacher.com/csharp/csharp-enum
+        private enum Y2022: int 
+        {
+            Jan23rd = 1,
+            Jan24th = 2,
+            Jan25th = 3,
+            Jan27th = 4
+        }
+        #endregion
 
         #region Amazon Interview Question - Steps of steps on steps
         static void StepClimber(int n, int[] x)
@@ -184,6 +204,80 @@ namespace Dailies
             }
             
             return output;
+        }
+
+        #endregion
+
+        #region Take a Ten Minute Walk - 1/27/2022
+        /// <summary>
+        /// You live in the city of Cartesia where all roads are laid out in a perfect grid. You arrived ten minutes too early to an appointment, 
+        /// so you decided to take the opportunity to go for a short walk. The city provides its citizens with a Walk Generating App on their phones -- 
+        /// everytime you press the button it sends you an array of one-letter strings representing directions to walk (eg. ['n', 's', 'w', 'e']). 
+        /// You always walk only a single block for each letter (direction) and you know it takes you one minute to traverse one city block, so create a 
+        /// function that will return true if the walk the app gives you will take you exactly ten minutes (you don't want to be early or late!) and will, 
+        /// of course, return you to your starting point. Return false otherwise.
+        /// </summary>
+        /// <param name="walk"></param>
+        /// <returns></returns>
+
+        static bool IsTenMinWalk (string[] walk)
+        {
+            bool isTenWalk;
+            bool didReturnToStart = false;
+            int count = 0;
+
+            // Lets make it all lowercase to make things easier on us
+            walk = walk.Select(s => s.ToLower()).ToArray();
+            // foreach (var item in walk) { Console.WriteLine($"{item.ToString()}"); } // Debug | validate array is lowercase
+
+            // Are we getting the expected data?
+            // if anything that was given to us is garbage (whitespaces or null), then we can't determine if it's a ten minute walk
+            for (int i = 0; i < walk.Length; i++)
+            {
+                if (string.IsNullOrWhiteSpace(walk[i]))
+                {
+                    Console.WriteLine("We have recieved a empy, whitespace, or null reference. Please provide valid information.");
+                    return isTenWalk = false;
+                }
+            }
+
+            // Did we at least walk 10 minutes?
+            // Also, did we return to our starting location?
+            int EW = 0; // East is positive, west is negative
+            int NS = 0; // North is positive, west is negative
+            for (int i = 0; i < walk.Length; i++)
+            {
+                if (walk[i] == "n" || walk[i] == "s" || walk[i] == "e" || walk[i] == "w") 
+                {
+                    if (walk[i] == "n") { NS += 1; }
+                    if (walk[i] == "s") { NS -= 1; }
+                    if (walk[i] == "e") { EW += 1; }
+                    if (walk[i] == "w") { EW -= 1; }
+
+                    count += 1; 
+                }
+            }
+
+            isTenWalk = count >= 10 ? true : false;
+            didReturnToStart = EW == 0 && NS == 0 ? true : false;
+
+            return isTenWalk = isTenWalk == true && didReturnToStart == true ? true : false;
+        }
+
+        static bool IsValidWalkOptimized (string[] walk)
+        {
+            if (walk.Length != 10) return false;
+            var x = 0; var y = 0;
+
+            foreach (var dir in walk)
+            {
+                if (dir == "n") x++;
+                else if (dir == "s") x--;
+                else if (dir == "e") y++;
+                else if (dir == "w") y--;
+            }
+
+            return x == 0 && y == 0;
         }
 
         #endregion
