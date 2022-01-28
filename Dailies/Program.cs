@@ -27,7 +27,7 @@ namespace Dailies
 
             switch (activeProblem)
             {
-                #region Jan 2022
+                #region January
                 case Y2022.Jan23rd: // Number of steps | broken down into groups
                     int N = 40; // Total number of steps
                     int[] X = { 1, 2 };
@@ -48,12 +48,13 @@ namespace Dailies
                     // Console.WriteLine($"Was it a ten minute walk?: {IsTenMinWalk(walk)}");
                     Console.WriteLine($"Was it a ten minute walk?: {IsValidWalkOptimized(walk)}");
                     break;
-                case Y2022.Jan28th: // Stop gninnipS My sdroW!
+                case Y2022.Jan28th: // Stop gninnipS My sdroW! | COMPLETED
                     phrase = "Hey wollef sroirraw";
                     phrase = SpinWords(phrase);
+                    // phrase = SpinWordsBestPractices(phrase);
                     Console.WriteLine(phrase);
                     break;
-                #endregion
+                #endregion // January
 
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
@@ -64,16 +65,33 @@ namespace Dailies
 
         #region Month and Day Enum
         // by default simply assigning int values to an enum doesn't make them enum's, you need to assign a ": type" | https://www.tutorialsteacher.com/csharp/csharp-enum
-        private enum Y2022: int 
+        private enum Y2022 : int
         {
-            Jan23rd = 1,
-            Jan24th = 2,
-            Jan25th = 3,
-            Jan27th = 4,
-            Jan28th = 5,
-            Jan29th = 6
+            #region 2022
+                #region January
+                Jan23rd,
+                Jan24th,
+                Jan25th,
+                Jan27th,
+                Jan28th,
+                Jan29th,
+                Jan30th,
+                Jan31st,
+                #endregion
+
+                #region February
+                Feb1st,
+                Feb2nd,
+                Feb3rd,
+                Feb4th
+                #endregion
+
+            #endregion // 2022
         }
         #endregion
+
+        #region Source Code
+        #region January
 
         #region Amazon Interview Question - Steps of steps on steps
         static void StepClimber(int n, int[] x)
@@ -131,9 +149,9 @@ namespace Dailies
         {
             // Garbage in garbage out, lets clean this up first with some guards
             if (phrase.Length == 0) // the string is empty, there's nothing for us to change here, you can have your "phrase" back now :)
-            { 
-                Console.WriteLine($"You have entered in {phrase} which appears to be an empty string. Please provide a sentance."); 
-                return phrase;  
+            {
+                Console.WriteLine($"You have entered in {phrase} which appears to be an empty string. Please provide a sentance.");
+                return phrase;
             }
 
             // This is what we're going to give them back
@@ -183,11 +201,11 @@ namespace Dailies
             // We're going to go through each character in the string we recieved and determine if the letter is occuring once, or more than once in the entire string.
             // Notably this should also include spaces, for reasons??
             // We have two loops here, the first is to go through each of the characters in the string to determine a match and the second is so we don't skip past the beginning characters.
-            
+
             for (int i = 0; i < l; i++)
             {
                 // Console.WriteLine($"i = {i} | {msg[i]}");
-                
+
                 // bool isDuplicate = false;
                 for (int ii = 0; ii < l; ii++)
                 {
@@ -197,19 +215,20 @@ namespace Dailies
                         // Console.WriteLine($"we found a match! {msg[i]} = {msg[ii]}"); // debug
                         output += multipleInpout;
                         break;
-                    } else
+                    }
+                    else
                     {
                         // There is no other's of the same character
-                        if (ii == l-1)
+                        if (ii == l - 1)
                         {
                             // Console.WriteLine($"No match was found :("); // debug
                             output += singleInput;
                         }
                     }
                 }
-                
+
             }
-            
+
             return output;
         }
 
@@ -227,7 +246,7 @@ namespace Dailies
         /// <param name="walk"></param>
         /// <returns></returns>
 
-        static bool IsTenMinWalk (string[] walk)
+        static bool IsTenMinWalk(string[] walk)
         {
             bool isTenWalk;
             bool didReturnToStart = false;
@@ -254,14 +273,14 @@ namespace Dailies
             int NS = 0; // North is positive, west is negative
             for (int i = 0; i < walk.Length; i++)
             {
-                if (walk[i] == "n" || walk[i] == "s" || walk[i] == "e" || walk[i] == "w") 
+                if (walk[i] == "n" || walk[i] == "s" || walk[i] == "e" || walk[i] == "w")
                 {
                     if (walk[i] == "n") { NS += 1; }
                     if (walk[i] == "s") { NS -= 1; }
                     if (walk[i] == "e") { EW += 1; }
                     if (walk[i] == "w") { EW -= 1; }
 
-                    count += 1; 
+                    count += 1;
                 }
             }
 
@@ -271,7 +290,7 @@ namespace Dailies
             return isTenWalk = isTenWalk == true && didReturnToStart == true ? true : false;
         }
 
-        static bool IsValidWalkOptimized (string[] walk)
+        static bool IsValidWalkOptimized(string[] walk)
         {
             if (walk.Length != 10) return false;
             var x = 0; var y = 0;
@@ -329,7 +348,8 @@ namespace Dailies
                                     rPhrase += " ";
                                 }
                             }
-                        } else
+                        }
+                        else
                         {
                             rPhrase += $"{p} ";
                             break;
@@ -338,7 +358,8 @@ namespace Dailies
                     Console.WriteLine($"{p}");
                 }
 
-            } else
+            }
+            else
             {
                 if (pl >= 5)
                 {
@@ -366,7 +387,7 @@ namespace Dailies
             int sLength = sentence.Length;
             int minWordLength = 5;
 
-            
+
             // Adjusting from real to whole number
             if (sLength > 0) sLength--;
 
@@ -392,7 +413,8 @@ namespace Dailies
                             {
                                 rSentence += $" ";
                                 /// Console.WriteLine(word[wLength - i]);
-                            } else
+                            }
+                            else
                             {
                                 rSentence += word[wLength - 1 - i];
                             }
@@ -418,7 +440,16 @@ namespace Dailies
             return rSentence.TrimEnd();
         }
 
+        static string SpinWordsBestPractices(string sentence)
+        {
+            return String.Join(" ", sentence.Split(' ').Select(str => str.Length >= 5 ? new string(str.Reverse().ToArray()) : str));
+        }
+
         #endregion
+
+        #endregion // January
+
+        #endregion // Source Code
 
 
     }
