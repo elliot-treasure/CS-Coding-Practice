@@ -22,7 +22,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Jan27th;
+            Y2022 activeProblem = Y2022.Jan28th;
             string phrase = "";
 
             switch (activeProblem)
@@ -48,6 +48,11 @@ namespace Dailies
                     // Console.WriteLine($"Was it a ten minute walk?: {IsTenMinWalk(walk)}");
                     Console.WriteLine($"Was it a ten minute walk?: {IsValidWalkOptimized(walk)}");
                     break;
+                case Y2022.Jan28th: // Stop gninnipS My sdroW!
+                    phrase = "Hey wollef sroirraw";
+                    phrase = SpinWords(phrase);
+                    Console.WriteLine(phrase);
+                    break;
                 #endregion
 
                 default:
@@ -64,7 +69,9 @@ namespace Dailies
             Jan23rd = 1,
             Jan24th = 2,
             Jan25th = 3,
-            Jan27th = 4
+            Jan27th = 4,
+            Jan28th = 5,
+            Jan29th = 6
         }
         #endregion
 
@@ -281,5 +288,138 @@ namespace Dailies
         }
 
         #endregion
+
+        #region Stop gninnipS My sdroW! - 1/28/2022
+
+        /// <summary>
+        /// Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed 
+        /// (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+        /// Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" 
+        /// spinWords( "This is another test" )=> returns "This is rehtona test"
+        /// </summary>
+        /// <param name="phrase"></param>
+        static string SpinWordsInit(string phrase)
+        {
+            // Does this string contain a whitespace?
+            bool hasWhiteSpace = phrase.Contains(" ");
+            string rPhrase = "";
+            int pl = phrase.Length;
+
+            if (hasWhiteSpace)
+            {
+                // we need to split the string up so we can manipulate each word
+                string[] pArr = phrase.Split(' ');
+
+                // Break it down so we're working word by word
+                foreach (var p in pArr)
+                {
+                    // With each of the words we're going to reverse them if they're greater than 5 letters 
+                    for (int i = 0; i <= p.Length; i++)
+                    {
+                        if (p.Length >= 5)
+                        {
+                            if (i != p.Length)
+                            {
+                                rPhrase += p[p.Length - 1 - i];
+                            }
+                            else
+                            {
+                                if (i == p.Length)
+                                {
+                                    rPhrase += " ";
+                                }
+                            }
+                        } else
+                        {
+                            rPhrase += $"{p} ";
+                            break;
+                        }
+                    }
+                    Console.WriteLine($"{p}");
+                }
+
+            } else
+            {
+                if (pl >= 5)
+                {
+                    // Lets reverse the word
+                    for (int i = 0; i < pl; i++)
+                    {
+                        rPhrase += phrase[pl - 1 - i];
+                    }
+                }
+                Console.WriteLine($"{phrase}");
+            }
+
+            return rPhrase;
+        }
+
+        static string SpinWords(string sentence)
+        {
+            // Lets clean this up first
+            sentence = sentence.TrimStart();
+            // sentence = sentence.TrimEnd();
+
+            // Init
+            bool hasWhitespace = sentence.Contains(' ');
+            string rSentence = "";
+            int sLength = sentence.Length;
+            int minWordLength = 5;
+
+            
+            // Adjusting from real to whole number
+            if (sLength > 0) sLength--;
+
+            // If we have any whitespaces then we probably have multiple sentences
+            if (hasWhitespace)
+            {
+                // Break up the sentence into a 1d array of words
+                string[] sArr = sentence.Split(' ');
+                int wLength = 0;
+
+                // Per word, we need to determine if it has the minum amount of letters required in it
+                // If it does not then we don't need to make any changes to it
+                foreach (var word in sArr)
+                {
+                    wLength = word.Length;
+
+                    // No reason to reverse any words, just add it to the return and lets move on
+                    if (wLength >= minWordLength)
+                    {
+                        for (int i = 0; i <= wLength; i++)
+                        {
+                            if (i == wLength)
+                            {
+                                rSentence += $" ";
+                                /// Console.WriteLine(word[wLength - i]);
+                            } else
+                            {
+                                rSentence += word[wLength - 1 - i];
+                            }
+                        }
+                    }
+
+                    if (wLength < minWordLength)
+                    {
+                        rSentence += $"{word} ";
+                    }
+                }
+            }
+
+            if (sLength >= minWordLength && !hasWhitespace)
+            {
+                // Lets reverse the word
+                for (int i = 0; i <= sLength; i++)
+                {
+                    rSentence += sentence[sLength - i];
+                }
+            }
+
+            return rSentence.TrimEnd();
+        }
+
+        #endregion
+
+
     }
 }
