@@ -22,7 +22,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Jan28th;
+            Y2022 activeProblem = Y2022.Jan30th;
             string phrase = "";
 
             switch (activeProblem)
@@ -54,6 +54,10 @@ namespace Dailies
                     // phrase = SpinWordsBestPractices(phrase);
                     Console.WriteLine(phrase);
                     break;
+                case Y2022.Jan30th: // Convert string to camel case
+                    phrase = "the-stealth-warrior";
+                    ToCamelCase(phrase);
+                    break;
                 #endregion // January
 
                 default:
@@ -68,23 +72,23 @@ namespace Dailies
         private enum Y2022 : int
         {
             #region 2022
-                #region January
-                Jan23rd,
-                Jan24th,
-                Jan25th,
-                Jan27th,
-                Jan28th,
-                Jan29th,
-                Jan30th,
-                Jan31st,
-                #endregion
+            #region January
+            Jan23rd,
+            Jan24th,
+            Jan25th,
+            Jan27th,
+            Jan28th,
+            Jan29th,
+            Jan30th,
+            Jan31st,
+            #endregion
 
-                #region February
-                Feb1st,
-                Feb2nd,
-                Feb3rd,
-                Feb4th
-                #endregion
+            #region February
+            Feb1st,
+            Feb2nd,
+            Feb3rd,
+            Feb4th
+            #endregion
 
             #endregion // 2022
         }
@@ -317,7 +321,7 @@ namespace Dailies
         /// spinWords( "This is another test" )=> returns "This is rehtona test"
         /// </summary>
         /// <param name="phrase"></param>
-        static string SpinWordsInit(string phrase)
+        static string SpinWordsInit(string phrase) // This was the inital attempt at this problem
         {
             // Does this string contain a whitespace?
             bool hasWhiteSpace = phrase.Contains(" ");
@@ -375,7 +379,7 @@ namespace Dailies
             return rPhrase;
         }
 
-        static string SpinWords(string sentence)
+        static string SpinWords(string sentence) // This was the first refactoring attempt at this problem
         {
             // Lets clean this up first
             sentence = sentence.TrimStart();
@@ -440,9 +444,49 @@ namespace Dailies
             return rSentence.TrimEnd();
         }
 
-        static string SpinWordsBestPractices(string sentence)
+        static string SpinWordsBestPractices(string sentence) // This is the least verbose solution to this problem
         {
             return String.Join(" ", sentence.Split(' ').Select(str => str.Length >= 5 ? new string(str.Reverse().ToArray()) : str));
+        }
+
+        #endregion
+
+        #region Convert string to camel case - 1/30/2022
+        /// <summary>
+        /// Complete the method/function so that it converts dash/underscore delimited words into camel casing. 
+        /// The first word within the output should be capitalized only if the original word was capitalized 
+        /// (known as Upper Camel Case, also often referred to as Pascal case).
+        /// 
+        /// "the-stealth-warrior" gets converted to "theStealthWarrior"
+        /// "The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        static string ToCamelCase(string str)
+        {
+            // Ultimately we don't care about the first letter based on how this is written
+            string rstr = "";
+            string[] sArr;
+            if (str.Contains('-')) 
+            { 
+                sArr = str.Split('-');
+               
+                for (int i = 1; i < sArr.Length; i++) // this is a 1 instead of a 0 intentionally, we don't want to touch with the first word
+                {
+                    string word = sArr[i];
+                    sArr[i] = word.ToUpper(0);
+                }
+            }
+            else if (str.Contains('_')) 
+            {
+                str.Replace('-', ' ');
+                TextInfo ti = new CultureInfo("en-us", false).TextInfo;
+                rstr = ti.ToTitleCase(str).ToString();
+                rstr = rstr.Remove(' ');
+            }
+            else return str;
+
+            return rstr;
         }
 
         #endregion
