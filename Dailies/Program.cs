@@ -473,8 +473,7 @@ namespace Dailies
                
                 for (int i = 1; i < sArr.Length; i++) // this is a 1 instead of a 0 intentionally, we don't want to touch with the first word
                 {
-                    string word = sArr[i];
-                    sArr[i] = word.ToUpper(0);
+                    sArr[i] = sArr[i].Substring(1);
                 }
             }
             else if (str.Contains('_')) 
