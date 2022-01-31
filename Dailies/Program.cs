@@ -54,9 +54,10 @@ namespace Dailies
                     // phrase = SpinWordsBestPractices(phrase);
                     Console.WriteLine(phrase);
                     break;
-                case Y2022.Jan30th: // Convert string to camel case
-                    phrase = "the-stealth-warrior";
-                    ToCamelCase(phrase);
+                case Y2022.Jan30th: // Convert string to camel case | COMPLETED
+                    phrase = "lsnkmlgfov_-hkptepiaye_mdsboncrwn";
+                    phrase = ToCamelCase(phrase);
+                    Console.WriteLine(phrase);
                     break;
                 #endregion // January
 
@@ -464,26 +465,55 @@ namespace Dailies
         /// <returns></returns>
         static string ToCamelCase(string str)
         {
-            // Ultimately we don't care about the first letter based on how this is written
+            // Init
             string rstr = "";
             string[] sArr;
-            if (str.Contains('-')) 
-            { 
-                sArr = str.Split('-');
-               
-                for (int i = 1; i < sArr.Length; i++) // this is a 1 instead of a 0 intentionally, we don't want to touch with the first word
+            if (str.Contains('-') && str.Contains('_'))
+            {
+                int dash = str.IndexOf('-');
+                int underscore = str.IndexOf('_');
+
+                // If the dash occurs first
+                if (dash < underscore)
                 {
-                    sArr[i] = sArr[i].Substring(1);
+                    var c = "_";
+                    str = str.Replace(c.ToString(), String.Empty);
+                }
+                // if the underscore occurs first=
+                if (dash > underscore)
+                {
+                    var c = "-";
+                    str = str.Replace(c.ToString(), String.Empty);
+                }
+            }
+            if (str.Contains('-')) 
+            {
+                sArr = str.Split('-');
+
+                foreach (var word in sArr)
+                {
+                    rstr += word[0].ToString().ToUpper(); // Capitalize the first letter
+                    rstr += word.Substring(1); // Get everything after the first letter
                 }
             }
             else if (str.Contains('_')) 
             {
-                str.Replace('-', ' ');
-                TextInfo ti = new CultureInfo("en-us", false).TextInfo;
-                rstr = ti.ToTitleCase(str).ToString();
-                rstr = rstr.Remove(' ');
+                sArr = str.Split('_');
+                foreach(var word in sArr)
+                {
+                    // if (word == " " || string.IsNullOrEmpty(word.ToString())) continue;
+                    if (word == sArr[0])
+                    {
+                        rstr += word[0].ToString().ToLower(); // Lowercase the first letter
+                        rstr += word.Substring(1); // Get everything after the first letter
+                    }
+                    if (word != sArr[0])
+                    {
+                        rstr += word[0].ToString().ToUpper();
+                        rstr += word.Substring(1);
+                    }
+                }
             }
-            else return str;
 
             return rstr;
         }
