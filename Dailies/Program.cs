@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Globalization; // Jaden Case Converter
 using System.Text.RegularExpressions;
 
@@ -23,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Jan30th;
+            Y2022 activeProblem = Y2022.Jan31st;
             string phrase = "";
 
             switch (activeProblem)
@@ -59,6 +60,10 @@ namespace Dailies
                     phrase = "the_--_-stealth_warrior";
                     phrase = ToCamelCaseRefactor(phrase);
                     Console.WriteLine($"{phrase}");
+                    break;
+                case Y2022.Jan31st: // Find the unique number
+                    IEnumerable<int> numList = new List<int> { 1, 2, 2, 2 };
+                    GetUnique(numList);
                     break;
                 #endregion // January
 
@@ -547,6 +552,27 @@ namespace Dailies
         static string ToCamelCaseBestPractice (string str)
         {
             return Regex.Replace(str, @"[_-](\w)", m => m.Groups[1].Value.ToUpper());
+        }
+
+        #endregion
+
+        #region Find the unique number
+        /// <summary>
+        /// There is an array with some numbers. All numbers are equal except for one. Try to find it!
+        /// findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
+        /// findUniq([ 0, 0, 0.55, 0, 0 ]) === 0.55
+        /// It’s guaranteed that array contains at least 3 numbers.
+        /// The tests contain some very huge arrays, so think about performance.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        static int GetUnique(IEnumerable<int> numbers)
+        {
+            int rnum = 0;
+            // foreach (var num in numbers) { Console.WriteLine($"{num}"); }
+            
+
+            return rnum;
         }
 
         #endregion
