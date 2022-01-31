@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Globalization; // Jaden Case Converter
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Hello! This project is intended for the express purpose of practicing coding as often as possible, as well as getting into good habits such as pushing to github.
@@ -55,9 +56,9 @@ namespace Dailies
                     Console.WriteLine(phrase);
                     break;
                 case Y2022.Jan30th: // Convert string to camel case | COMPLETED
-                    phrase = "lsnkmlgfov_-hkptepiaye_mdsboncrwn";
-                    phrase = ToCamelCase(phrase);
-                    Console.WriteLine(phrase);
+                    phrase = "the_--_-stealth_warrior";
+                    phrase = ToCamelCaseRefactor(phrase);
+                    Console.WriteLine($"{phrase}");
                     break;
                 #endregion // January
 
@@ -463,35 +464,40 @@ namespace Dailies
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        static string ToCamelCase(string str)
+        static string ToCamelCaseOriginal(string str)
         {
             // Init
             string rstr = "";
             string[] sArr;
+
             if (str.Contains('-') && str.Contains('_'))
             {
-                int dash = str.IndexOf('-');
-                int underscore = str.IndexOf('_');
+                char ch = '-';
+                int countDash = str.Count(f=> (f == ch));
+                ch = '_';
+                int countUnderscore = str.Count(f => (f == ch));
 
                 // If the dash occurs first
-                if (dash < underscore)
+                if (countDash > countUnderscore)
                 {
                     var c = "_";
                     str = str.Replace(c.ToString(), String.Empty);
                 }
                 // if the underscore occurs first=
-                if (dash > underscore)
+                if (countDash < countUnderscore)
                 {
                     var c = "-";
                     str = str.Replace(c.ToString(), String.Empty);
                 }
             }
+
             if (str.Contains('-')) 
             {
                 sArr = str.Split('-');
 
                 foreach (var word in sArr)
                 {
+                    Console.WriteLine($"{word}");
                     rstr += word[0].ToString().ToUpper(); // Capitalize the first letter
                     rstr += word.Substring(1); // Get everything after the first letter
                 }
@@ -501,6 +507,7 @@ namespace Dailies
                 sArr = str.Split('_');
                 foreach(var word in sArr)
                 {
+                    Console.WriteLine($"{word}");
                     // if (word == " " || string.IsNullOrEmpty(word.ToString())) continue;
                     if (word == sArr[0])
                     {
@@ -516,6 +523,30 @@ namespace Dailies
             }
 
             return rstr;
+        }
+
+        static string ToCamelCaseRefactor (string str)
+        {
+            string rstr = "";
+
+            if (str.Contains('-') || str.Contains('_'))
+            {
+                string[] sArr = str.Split('-', '_');
+                foreach (var word in sArr)
+                {
+                    if (String.IsNullOrEmpty(word)) continue; // Skip entries that are blank/null after removing the characters
+                    if (word == sArr[0]) { rstr += word; continue; } // if it's the first word just output that and go to the next word
+                    rstr += word[0].ToString().ToUpper(); // capitalize the first letter
+                    rstr += word.Substring(1); // output the remainder of the word
+                }
+            }
+
+            return rstr;
+        }
+
+        static string ToCamelCaseBestPractice (string str)
+        {
+            return Regex.Replace(str, @"[_-](\w)", m => m.Groups[1].Value.ToUpper());
         }
 
         #endregion
