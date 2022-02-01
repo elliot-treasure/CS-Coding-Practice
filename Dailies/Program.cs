@@ -66,7 +66,10 @@ namespace Dailies
                     GetUnique(numList);
                     break;
                 #endregion // January
-
+                #region February
+                case Y2022.Feb1st: // Moving Zeros To The End
+                    break;
+                #endregion // February
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
                     break;
