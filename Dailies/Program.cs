@@ -101,7 +101,31 @@ namespace Dailies
             Feb1st,
             Feb2nd,
             Feb3rd,
-            Feb4th
+            Feb4th,
+            Feb5th,
+            Feb6th,
+            Feb7th,
+            Feb8th,
+            Feb9th,
+            Feb10th,
+            Feb11th,
+            Feb12th,
+            Feb13th,
+            Feb14th,
+            Feb15th,
+            Feb16th,
+            Feb17th,
+            Feb18th,
+            Feb19th,
+            Feb20th,
+            Feb21st,
+            Feb22nd,
+            Feb23rd,
+            Feb24th,
+            Feb25th,
+            Feb26th,
+            Feb27th,
+            Feb28th
             #endregion
 
             #endregion // 2022
