@@ -61,15 +61,19 @@ namespace Dailies
                     phrase = ToCamelCaseRefactor(phrase);
                     Console.WriteLine($"{phrase}");
                     break;
-                case Y2022.Jan31st: // Find the unique number
+                case Y2022.Jan31st: // Find the unique number | COMPLETED
                     IEnumerable<int> numList = new List<int> { 0, 0, 1, 0 };
                     Console.WriteLine($"{GetUnique(numList)}");
                     break;
                 #endregion // January
+
                 #region February
                 case Y2022.Feb1st: // Moving Zeros To The End
+                    int[] arr = { 1, 2, 1, 1, 3, 1, 0, 0, 0, 0 };
+                    MoveZeros(arr);
                     break;
                 #endregion // February
+
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
                     break;
@@ -481,7 +485,7 @@ namespace Dailies
             if (str.Contains('-') && str.Contains('_'))
             {
                 char ch = '-';
-                int countDash = str.Count(f=> (f == ch));
+                int countDash = str.Count(f => (f == ch));
                 ch = '_';
                 int countUnderscore = str.Count(f => (f == ch));
 
@@ -499,7 +503,7 @@ namespace Dailies
                 }
             }
 
-            if (str.Contains('-')) 
+            if (str.Contains('-'))
             {
                 sArr = str.Split('-');
 
@@ -510,10 +514,10 @@ namespace Dailies
                     rstr += word.Substring(1); // Get everything after the first letter
                 }
             }
-            else if (str.Contains('_')) 
+            else if (str.Contains('_'))
             {
                 sArr = str.Split('_');
-                foreach(var word in sArr)
+                foreach (var word in sArr)
                 {
                     Console.WriteLine($"{word}");
                     // if (word == " " || string.IsNullOrEmpty(word.ToString())) continue;
@@ -533,7 +537,7 @@ namespace Dailies
             return rstr;
         }
 
-        static string ToCamelCaseRefactor (string str)
+        static string ToCamelCaseRefactor(string str)
         {
             string rstr = "";
 
@@ -552,14 +556,14 @@ namespace Dailies
             return rstr;
         }
 
-        static string ToCamelCaseBestPractice (string str)
+        static string ToCamelCaseBestPractice(string str)
         {
             return Regex.Replace(str, @"[_-](\w)", m => m.Groups[1].Value.ToUpper());
         }
 
         #endregion
 
-        #region Find the unique number
+        #region Find the unique number - 1/31/2022 & 2/1/2022
         /// <summary>
         /// There is an array with some numbers. All numbers are equal except for one. Try to find it! 
         /// findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
@@ -572,43 +576,35 @@ namespace Dailies
         static int GetUnique(IEnumerable<int> numbers)
         {
             // init
-            int defaultNum = 0;
-            int numOne, numOneCount, numTwo, numTwoCount, rnum;
-            numOne = defaultNum; numOneCount = defaultNum; 
-            numTwo = defaultNum; numTwoCount = defaultNum;
-            rnum = defaultNum;
+            int rnum;
+            int lastNum = -9999;
+            int numOne = 0, numOneCount = 0, numTwo = 0, numTwoCount = 0;
 
-            bool numOneLocked, numTwoLocked;
-            numOneLocked = false; numTwoLocked = false;
-
-            foreach (var num in numbers) {
-                // edgecase, what if one of the the numbers is zero?
-                if (num == defaultNum) {
-                    defaultNum -= 1000;
-                    if (!numOneLocked) numOne = defaultNum;
-                    if (!numTwoLocked)  numTwo = defaultNum;
-                    Console.WriteLine($"default numbers have changed. NumOne: {numOne} | NumTwo: {numTwo}");
-                }
-
-                // set the number's as we encounter them
-                if (numOne == defaultNum && num != numOne) { numOne = num; numOneCount++; numOneLocked = true; continue; }
-                if (numTwo == defaultNum && num != numTwo && numOne != defaultNum) { numTwo = num; numTwoCount++; numTwoLocked = true; continue; }
-
-                // apply count
-                if (num == numOne && numOne != defaultNum) numOneCount += 1; 
-                if (num == numTwo && numTwo != defaultNum) numTwoCount += 1;
-                
-                Console.WriteLine($"Number: {num} | OneCount: {numOneCount} | TwoCount: {numTwoCount} | NumOne: {numOne} | NumTwo: {numTwo} | DefaultNum: {defaultNum}");
+            foreach (int num in numbers)
+            {
+                if (lastNum == -9999) { lastNum = num; numOne = num; } // Only needed for first itteration
+                if (numOne == numTwo) numTwo--; // there should never be a case where these two are equal
+                if (numTwoCount < 1 && numTwo != num && numOne != num) numTwo = num; // If number two's count is 0 then we have to set the number still
+                if (num == numOne) numOneCount++;
+                if (num == numTwo) numTwoCount++;
+                // Console.WriteLine($"Last Number: {lastNum}| Current Number: {num}| Number One: {numOne}| Num One Count: {numOneCount}| Number two: {numTwo}| Num Two Count: {numTwoCount}"); // Debug
             }
-            if (numOneCount > numTwoCount) rnum = numTwo;
-            else rnum = numOne;
 
-            return rnum;
+            return rnum = numOneCount < numTwoCount ? numOne : numTwo;
         }
 
         #endregion
 
         #endregion // January
+
+        #region February
+
+        private static int[] MoveZeros(int[] arr)
+        {
+            return arr;
+        } 
+
+        #endregion // February
 
         #endregion // Source Code
 
