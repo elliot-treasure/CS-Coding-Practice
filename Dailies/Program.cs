@@ -62,8 +62,8 @@ namespace Dailies
                     Console.WriteLine($"{phrase}");
                     break;
                 case Y2022.Jan31st: // Find the unique number
-                    IEnumerable<int> numList = new List<int> { 1, 2, 2, 2 };
-                    GetUnique(numList);
+                    IEnumerable<int> numList = new List<int> { 0, 0, 1, 0 };
+                    Console.WriteLine($"{GetUnique(numList)}");
                     break;
                 #endregion // January
                 #region February
@@ -561,7 +561,7 @@ namespace Dailies
 
         #region Find the unique number
         /// <summary>
-        /// There is an array with some numbers. All numbers are equal except for one. Try to find it!
+        /// There is an array with some numbers. All numbers are equal except for one. Try to find it! 
         /// findUniq([ 1, 1, 1, 2, 1, 1 ]) === 2
         /// findUniq([ 0, 0, 0.55, 0, 0 ]) === 0.55
         /// It’s guaranteed that array contains at least 3 numbers.
@@ -571,9 +571,37 @@ namespace Dailies
         /// <returns></returns>
         static int GetUnique(IEnumerable<int> numbers)
         {
-            int rnum = 0;
-            // foreach (var num in numbers) { Console.WriteLine($"{num}"); }
-            
+            // init
+            int defaultNum = 0;
+            int numOne, numOneCount, numTwo, numTwoCount, rnum;
+            numOne = defaultNum; numOneCount = defaultNum; 
+            numTwo = defaultNum; numTwoCount = defaultNum;
+            rnum = defaultNum;
+
+            bool numOneLocked, numTwoLocked;
+            numOneLocked = false; numTwoLocked = false;
+
+            foreach (var num in numbers) {
+                // edgecase, what if one of the the numbers is zero?
+                if (num == defaultNum) {
+                    defaultNum -= 1000;
+                    if (!numOneLocked) numOne = defaultNum;
+                    if (!numTwoLocked)  numTwo = defaultNum;
+                    Console.WriteLine($"default numbers have changed. NumOne: {numOne} | NumTwo: {numTwo}");
+                }
+
+                // set the number's as we encounter them
+                if (numOne == defaultNum && num != numOne) { numOne = num; numOneCount++; numOneLocked = true; continue; }
+                if (numTwo == defaultNum && num != numTwo && numOne != defaultNum) { numTwo = num; numTwoCount++; numTwoLocked = true; continue; }
+
+                // apply count
+                if (num == numOne && numOne != defaultNum) numOneCount += 1; 
+                if (num == numTwo && numTwo != defaultNum) numTwoCount += 1;
+                
+                Console.WriteLine($"Number: {num} | OneCount: {numOneCount} | TwoCount: {numTwoCount} | NumOne: {numOne} | NumTwo: {numTwo} | DefaultNum: {defaultNum}");
+            }
+            if (numOneCount > numTwoCount) rnum = numTwo;
+            else rnum = numOne;
 
             return rnum;
         }
