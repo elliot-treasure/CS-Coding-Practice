@@ -73,7 +73,10 @@ namespace Dailies
                     arr = MoveZeros(arr);
                     foreach (int display in arr) { Console.Write(display + ","); }
                     break;
-                case Y2022.Feb2nd:
+                case Y2022.Feb2nd: // Your order, please
+                    string words = "is2 Thi1s T4est 3a";
+                    words = OrderWordByNumber(words);
+                    Console.WriteLine($"{words}");
                     break;
                 #endregion // February
 
@@ -673,6 +676,31 @@ namespace Dailies
         }
         #endregion // 1st and 2nd
 
+        #region Your order, please
+        /// <summary>
+        /// Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result.
+        /// Note: Numbers can be from 1 to 9. So 1 will be the first word(not 0).
+        /// If the input string is empty, return an empty string. The words in the input String will only contain valid consecutive numbers.
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns></returns>
+        public static string OrderWordByNumber(string words)
+        {
+            // Looks like we can reliably dilimit the string based on spaces, and we can also expect each word to "contain" a number
+            string ret = ""; int cIndex = 0;
+            string[] arr = words.Split(' ');
+
+            while (ret.Length < words.Length)
+            {
+                if (arr[cIndex].Contains($"{cIndex}")) ret += $"{arr[cIndex]} ";
+                cIndex++;
+                if (cIndex >= arr.Length) cIndex = 0;
+            }
+
+            return ret;
+        }
+
+        #endregion // your order, please
 
         #endregion // February
 
