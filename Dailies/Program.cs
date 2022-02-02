@@ -656,6 +656,17 @@ namespace Dailies
             return arr;
         } 
 
+        private static int[] MoveZerosCompact(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                var num = arr[i]; var cIndex = i; // init
+                while (cIndex > 0 && arr[cIndex - 1] == 0) { arr[cIndex] = arr[cIndex - 1]; cIndex--; }
+                arr[cIndex] = num;
+            }
+            return arr;
+        }
+
         private static int[] MoveZerosForCheaters(int[] arr)
         {
             return arr.OrderBy(x => x == 0).ToArray();
