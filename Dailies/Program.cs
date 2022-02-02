@@ -24,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Jan31st;
+            Y2022 activeProblem = Y2022.Feb2nd;
             string phrase = "";
 
             switch (activeProblem)
@@ -68,9 +68,12 @@ namespace Dailies
                 #endregion // January
 
                 #region February
-                case Y2022.Feb1st: // Moving Zeros To The End
-                    int[] arr = { 1, 2, 1, 1, 3, 1, 0, 0, 0, 0 };
-                    MoveZeros(arr);
+                case Y2022.Feb1st: // Moving Zeros To The End | COMPLETED
+                    int[] arr = { 1, 2, 0, 1, 0, 1, 0, 3, 0, 1 };
+                    arr = MoveZeros(arr);
+                    foreach (int display in arr) { Console.Write(display + ","); }
+                    break;
+                case Y2022.Feb2nd:
                     break;
                 #endregion // February
 
@@ -626,10 +629,39 @@ namespace Dailies
 
         #region February
 
+        #region Move zero's to the end - Feb 1st and 2nd 2022
+        /// <summary>
+        /// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         private static int[] MoveZeros(int[] arr)
         {
+            // Compare each entry in the array to its neighbor, then move as needed
+            for (int i = 0; i < arr.Length; i++)
+            {
+                var num = arr[i]; // current number
+                var cIndex = i; // current index
+
+                // Compare our current num to it's neighbor and only change if it's 0
+                // Notably, this can be easily changed to sort from lowest to highest by swapping out the '== 0' for '> num'
+                // or from highest to lowest by swapping '== 0' for '< num'!
+                while (cIndex > 0 && arr[cIndex - 1] == 0)
+                {
+                    arr[cIndex] = arr[cIndex - 1];
+                    cIndex--;
+                }
+                arr[cIndex] = num;
+            }
             return arr;
         } 
+
+        private static int[] MoveZerosForCheaters(int[] arr)
+        {
+            return arr.OrderBy(x => x == 0).ToArray();
+        }
+        #endregion // 1st and 2nd
+
 
         #endregion // February
 
