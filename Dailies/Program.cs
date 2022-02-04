@@ -73,12 +73,15 @@ namespace Dailies
                     arr = MoveZeros(arr);
                     foreach (int display in arr) { Console.Write(display + ","); }
                     break;
-                case Y2022.Feb2nd: // Your order, please
+                case Y2022.Feb2nd: // Your order, please - COMPLETED
                     string words = "is2 Thi1s T4est 3a";
                     words = OrderWordByNumber(words);
                     Console.WriteLine($"{words}");
                     break;
-                case Y2022.Feb3rd:
+                case Y2022.Feb3rd: // Bit Counting
+                    int bits = 0;
+                    bits = CountBits(bits);
+                    Console.WriteLine($"Your bit value is: {bits}");
                     break;
                 #endregion // February
 
@@ -659,7 +662,7 @@ namespace Dailies
                 arr[cIndex] = num;
             }
             return arr;
-        } 
+        }
 
         private static int[] MoveZerosCompact(int[] arr)
         {
@@ -678,7 +681,7 @@ namespace Dailies
         }
         #endregion // 1st and 2nd
 
-        #region Your order, please
+        #region Your order, please - Feb 2nd & 3rd 2022
         /// <summary>
         /// Your task is to sort a given string. Each word in the string will contain a single number. This number is the position the word should have in the result.
         /// Note: Numbers can be from 1 to 9. So 1 will be the first word(not 0).
@@ -698,7 +701,7 @@ namespace Dailies
             {
                 for (int i = 0; i < arr.Length; i++)
                 {
-                    if (word.Contains($"{i+1}")) retArr[i] = word; // Change i to a real number from a whole number, and set the value based on entry
+                    if (word.Contains($"{i + 1}")) retArr[i] = word; // Change i to a real number from a whole number, and set the value based on entry
                 }
             }
             foreach (var word in retArr) ret += $"{word} "; // let's add this to our output and return the string they requested
@@ -706,7 +709,33 @@ namespace Dailies
             return ret.TrimEnd();
         }
 
+        public static string OrderWordByNumberBirdie(string words)
+        {
+            if (string.IsNullOrEmpty(words)) return words;
+            return string.Join(" ", words.Split(' ').OrderBy(s => s.ToList().Find(c => char.IsDigit(c))));
+        }
+
         #endregion // your order, please
+
+        #region Bit Counting - Feb 3rd 2022
+        /// <summary>
+        /// Write a function that takes an integer as input, and returns the number of bits that are equal to one in 
+        /// the binary representation of that number. You can guarantee that input is non-negative.
+        /// Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        /// <thoughts>
+        /// The description could be a bit better buuuut, it looks like what they're trying to say is that we need to find the number of 1's in the 
+        /// bionary representation, in example 10011010010 there are 5 "1's" total so we should return "5".
+        /// But first we need to take whatever number is provided to us, then convert that into its bionary representation.
+        /// </thoughts>
+        private static int CountBits(int n)
+        {
+            return -1;
+        }
+
+        #endregion
 
         #endregion // February
 
