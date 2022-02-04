@@ -78,6 +78,8 @@ namespace Dailies
                     words = OrderWordByNumber(words);
                     Console.WriteLine($"{words}");
                     break;
+                case Y2022.Feb3rd:
+                    break;
                 #endregion // February
 
                 default:
@@ -687,17 +689,21 @@ namespace Dailies
         public static string OrderWordByNumber(string words)
         {
             // Looks like we can reliably dilimit the string based on spaces, and we can also expect each word to "contain" a number
-            string ret = ""; int cIndex = 0;
-            string[] arr = words.Split(' ');
+            string ret = "";
+            string[] arr = words.Split(' '); // We need to dilimit the word's in words by space to make this easier to parse through
+            string[] retArr = new string[arr.Length]; // Now that we know the length of what we're working with lets store those words in the order we want
 
-            while (ret.Length < words.Length)
+            // Lets check to see what number the word contains, then we're going to add it to the array based on that number
+            foreach (var word in arr)
             {
-                if (arr[cIndex].Contains($"{cIndex}")) ret += $"{arr[cIndex]} ";
-                cIndex++;
-                if (cIndex >= arr.Length) cIndex = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (word.Contains($"{i+1}")) retArr[i] = word; // Change i to a real number from a whole number, and set the value based on entry
+                }
             }
+            foreach (var word in retArr) ret += $"{word} "; // let's add this to our output and return the string they requested
 
-            return ret;
+            return ret.TrimEnd();
         }
 
         #endregion // your order, please
