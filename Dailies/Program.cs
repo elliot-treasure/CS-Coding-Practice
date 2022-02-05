@@ -78,7 +78,7 @@ namespace Dailies
                     words = OrderWordByNumber(words);
                     Console.WriteLine($"{words}");
                     break;
-                case Y2022.Feb3rd: // Bit Counting
+                case Y2022.Feb5th: // Bit Counting
                     int bits = 0;
                     bits = CountBits(bits);
                     Console.WriteLine($"Your bit value is: {bits}");
@@ -717,7 +717,7 @@ namespace Dailies
 
         #endregion // your order, please
 
-        #region Bit Counting - Feb 3rd 2022
+        #region Bit Counting - Feb 3rd - 5th 2022
         /// <summary>
         /// Write a function that takes an integer as input, and returns the number of bits that are equal to one in 
         /// the binary representation of that number. You can guarantee that input is non-negative.
@@ -729,6 +729,7 @@ namespace Dailies
         /// The description could be a bit better buuuut, it looks like what they're trying to say is that we need to find the number of 1's in the 
         /// bionary representation, in example 10011010010 there are 5 "1's" total so we should return "5".
         /// But first we need to take whatever number is provided to us, then convert that into its bionary representation.
+        /// 
         /// </thoughts>
         private static int CountBits(int n)
         {
