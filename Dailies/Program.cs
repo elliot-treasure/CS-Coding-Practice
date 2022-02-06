@@ -24,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Feb2nd;
+            Y2022 activeProblem = Y2022.Feb5th;
             string phrase = "";
 
             switch (activeProblem)
@@ -78,10 +78,12 @@ namespace Dailies
                     words = OrderWordByNumber(words);
                     Console.WriteLine($"{words}");
                     break;
-                case Y2022.Feb5th: // Bit Counting
-                    int bits = 0;
+                case Y2022.Feb5th: // Bit Counting - COMPLETED
+                    int bits = 1234;
                     bits = CountBits(bits);
                     Console.WriteLine($"Your bit value is: {bits}");
+                    break;
+                case Y2022.Feb6th:
                     break;
                 #endregion // February
 
@@ -733,10 +735,22 @@ namespace Dailies
         /// </thoughts>
         private static int CountBits(int n)
         {
-            return -1;
+            // Convert the value that was passed through into a binary string
+            string binary = Convert.ToString(n, 2);
+            // Count the number of time's "1" occurs within the "binary" string
+            n = 0;
+            foreach(var bit in binary) { if (bit.ToString() == "1") n++; }
+            return n;
+        }
+
+        private static int CountBitsHoleInOne(int n)
+        {
+            return Convert.ToString(n, 2).Count(x => x == '1');
         }
 
         #endregion
+
+
 
         #endregion // February
 
