@@ -24,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Feb5th;
+            Y2022 activeProblem = Y2022.Feb8th;
             string phrase = "";
 
             switch (activeProblem)
@@ -83,7 +83,12 @@ namespace Dailies
                     bits = CountBits(bits);
                     Console.WriteLine($"Your bit value is: {bits}");
                     break;
-                case Y2022.Feb7th:
+                case Y2022.Feb7th: // Narcissistic Numbers - COMPLETED
+                    int value = 153;
+                    string isNars = IsNarcissistic(value) ? "yes" : "no";
+                    Console.WriteLine($"Is {value} a narsassistic number? {isNars}");
+                    break;
+                case Y2022.Feb8th: // Most frequently used words in a text 
                     break;
                 #endregion // February
 
@@ -750,7 +755,7 @@ namespace Dailies
 
         #endregion
 
-        #region Does my number look big in this? - Feb7th
+        #region Narcissistic Numbers - Feb7th
         /// <summary>
         /// A Narcissistic Number is a positive number which is the sum of its own digits, each raised to the 
         /// power of the number of digits in a given base. In this Kata, we will restrict ourselves to decimal (base 10).
@@ -766,13 +771,40 @@ namespace Dailies
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static bool NarcissisticNumber(int value)
+        public static bool IsNarcissistic(long n)
         {
-            return false;
+            int nLength = (int)n.ToString().Length; // number of digits in 'value'
+            int r = 0; // returned value
+            int p = 0; // 'to the power of' done the 'hard way' as it's more performant than Math.Pow(x,y);
+            string val = n.ToString();
+
+            for (int i = 0; i < nLength; i++)
+            {
+                int v = (int)Char.GetNumericValue(val[i]);
+                p = v;
+                for (int ii = 1; ii < nLength; ii++) { p *= v; } // to the power of...
+                r += p;
+            }
+            return r == (int)n ? true : false;
+        }
+
+        public static bool IsNarcissisticHIO(long n)
+        {
+            return n.ToString().Sum(c => (long)Math.Pow(long.Parse(c.ToString()), n.ToString().Length)) == n;
         }
 
 
         #endregion // Does my number look big in this
+
+        #region Most frequently used words in a text
+
+        private static List<string> GetTop3UsedWords(string s)
+        {
+            return null;
+        }
+
+        #endregion // Most frequently used words in a text
+
 
         #endregion // February
 
