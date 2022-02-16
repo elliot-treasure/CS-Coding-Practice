@@ -88,7 +88,13 @@ namespace Dailies
                     string isNars = IsNarcissistic(value) ? "yes" : "no";
                     Console.WriteLine($"Is {value} a narsassistic number? {isNars}");
                     break;
-                case Y2022.Feb8th: // Most frequently used words in a text 
+                // Feb 8th till today were consumed by lost ark... oof, time to get back int the rhythm!
+                case Y2022.Feb15th: // Where my anagrams at?
+                    string word = "abba";
+                    List<string> wordz = new List<string>() { "aabb", "abcd", "" };
+                    Anagrams(word, wordz);
+                    break;
+                case Y2022.Feb16th: // Most frequently used words in a text 
                     break;
                 #endregion // February
 
@@ -805,6 +811,14 @@ namespace Dailies
 
         #endregion // Most frequently used words in a text
 
+        #region Where my anagrams at?
+
+        public static List<string> Anagrams(string word, List<string> words)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion // Where my anagrams at?
 
         #endregion // February
 
