@@ -823,11 +823,14 @@ namespace Dailies
             // There's a library for this; However, it contains every letter and variation of letter for all suppored languages... which is a lot...
             // Yeah, we gonna keep it stupid simple since we don't 'need' to do it
             string[] alphabet = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z" };
-            int[] count = { 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0 };
-            Console.WriteLine($"Count Length {count.Length}");
-            Console.WriteLine($"Alphabet Length {alphabet.Length}");
-            // for (int i = 0; i < alphabet.Length; i++) count[i] = 1;
-            // foreach (var num in count) Console.WriteLine($"{num}");
+            int[] count = { 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0 };
+
+            // Now that we have a method of determining how many of each specific letter is being used, we can itterate through the list
+            // of provided words to determine if they are a match or not. notably, in this use case we do not care if they are upper or lowercase letters
+            // they're going to be counted
+
+
+            // Now we return the list of words we found to be anagrams
             return words;
         }
 
