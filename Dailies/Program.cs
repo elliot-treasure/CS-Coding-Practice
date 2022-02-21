@@ -24,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Feb15th;
+            Y2022 activeProblem = Y2022.Feb21st;
             string phrase = "";
 
             switch (activeProblem)
@@ -820,8 +820,15 @@ namespace Dailies
 
         public static List<string> Anagrams(string word, List<string> words)
         {
-            Console.WriteLine($"{word}");
-            throw new NotImplementedException();
+            // There's a library for this; However, it contains every letter and variation of letter for all suppored languages... which is a lot...
+            // Yeah, we gonna keep it stupid simple since we don't 'need' to do it
+            string[] alphabet = { "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z" };
+            int[] count = { 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,0, 0,0,0,0 };
+            Console.WriteLine($"Count Length {count.Length}");
+            Console.WriteLine($"Alphabet Length {alphabet.Length}");
+            // for (int i = 0; i < alphabet.Length; i++) count[i] = 1;
+            // foreach (var num in count) Console.WriteLine($"{num}");
+            return words;
         }
 
         #endregion // Where my anagrams at?
