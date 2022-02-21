@@ -24,7 +24,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Feb8th;
+            Y2022 activeProblem = Y2022.Feb15th;
             string phrase = "";
 
             switch (activeProblem)
@@ -88,13 +88,18 @@ namespace Dailies
                     string isNars = IsNarcissistic(value) ? "yes" : "no";
                     Console.WriteLine($"Is {value} a narsassistic number? {isNars}");
                     break;
-                // Feb 8th till today were consumed by lost ark... oof, time to get back int the rhythm!
-                case Y2022.Feb15th: // Where my anagrams at?
+
+                // Recovering from illness and lost ark release. Might take the time to go back and solve additional problems to
+                // fill in the date range, but that also defeats the purpose so most likely this gap will just remain
+                // rip feb 8th to the 20th...
+
+                case Y2022.Feb21st: // Where my anagrams at?
                     string word = "abba";
                     List<string> wordz = new List<string>() { "aabb", "abcd", "" };
                     Anagrams(word, wordz);
                     break;
-                case Y2022.Feb16th: // Most frequently used words in a text 
+                case Y2022.Feb22nd: // Most frequently used words in a text
+
                     break;
                 #endregion // February
 
@@ -815,6 +820,7 @@ namespace Dailies
 
         public static List<string> Anagrams(string word, List<string> words)
         {
+            Console.WriteLine($"{word}");
             throw new NotImplementedException();
         }
 
