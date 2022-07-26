@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 
 /// <summary>
 /// Hello! This project is intended for the express purpose of practicing coding as often as possible, as well as getting into good habits such as pushing to github.
+/// Notably, just because this isn't getting updated does not mean I am not practicing as there are active projects that are not going to be in a public repo. 
 /// </summary>
 namespace Dailies
 {
@@ -24,7 +25,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.Feb21st;
+            Y2022 activeProblem = Y2022.July26th;
             string phrase = "";
 
             switch (activeProblem)
@@ -103,6 +104,16 @@ namespace Dailies
                     break;
                 #endregion // February
 
+                #region July
+
+                case Y2022.July26th: // Number of trailing zeros of N!
+                    int n = 521;
+
+                    Console.WriteLine($"{TrailingZeros(n)}");
+
+                    break;
+
+                #endregion July
                 default:
                     // Hey goof ball, go change the activeProblem to the corresponding challenge day!
                     break;
@@ -154,17 +165,21 @@ namespace Dailies
             Feb25th,
             Feb26th,
             Feb27th,
-            Feb28th
+            Feb28th,
             #endregion
 
-            #region March
-            #endregion // March
+            #region July
+
+                July26th
+
+            #endregion July
 
             #endregion // 2022
         }
         #endregion
 
         #region Source Code
+
         #region January
 
         #region Amazon Interview Question - Steps of steps on steps
@@ -837,6 +852,48 @@ namespace Dailies
         #endregion // Where my anagrams at?
 
         #endregion // February
+
+        #region July
+
+        /// Summary
+        /// Write a program that will calculate the number of trailing zeros in a factorial of a given number.
+        ///     N! = 1 * 2 * 3 *  ... * N
+        /// Be careful 1000! has 2568 digits...
+        /// For more info, see: http://mathworld.wolfram.com/Factorial.html
+        /// Hint: You're not meant to calculate the factorial. Find another way to find the number of zeros.
+        /// 
+
+        public static int TrailingZeros(int n)
+        {
+            // Rule out negative numbers
+            if (n <= -1) return -1;
+
+            // init
+            int c = 0;
+
+            /*
+                The answer to this relys upon an obscure fact regarding factorials
+                if you try to do a for loop where you solve for the factorial (i.e. i=0; i<=n; i++) 
+                then you'll overload the int flooring it to 0. that's where the factors of 5 start to come in. 
+                1-4 = 0 trailing 0's
+                5-9 = 1 trailing 0's
+                10-14 = 2 trailing 0's
+                15-19 = 3 trailing 0's
+                20-24 = 4 trailing 0's
+                25-29 = 6 trailing 0's
+                and every multiple of 5 adds another 0 (5, 25, 125, etc.)
+                notably, for performance increase rather than divide by five you could multiply by 0.2
+                as multiplication is a faster operation than division for computers, but for now i'll stick to division
+            */
+            for (int i = 5; n / i >= 1; i *= 5)
+            {
+                c += n / i;
+            }
+
+            return c;
+        }
+
+        #endregion July
 
         #endregion // Source Code
 

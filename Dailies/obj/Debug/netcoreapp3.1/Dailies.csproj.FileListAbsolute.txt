@@ -26,3 +26,17 @@ C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dail
 C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.dll
 C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.pdb
 C:\Users\ellio\source\repos\Dailies\Daily-s\Dailies\obj\Debug\netcoreapp3.1\Dailies.genruntimeconfig.cache
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.exe
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.deps.json
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.runtimeconfig.json
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.runtimeconfig.dev.json
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.dll
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\bin\Debug\netcoreapp3.1\Dailies.pdb
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.csproj.AssemblyReference.cache
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.AssemblyInfoInputs.cache
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.AssemblyInfo.cs
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.csproj.CoreCompileInputs.cache
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.dll
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.pdb
+C:\Users\ellio\Documents\Software Dev\Decisive Dice\Daily-Coding-Practice\Dailies\obj\Debug\netcoreapp3.1\Dailies.genruntimeconfig.cache

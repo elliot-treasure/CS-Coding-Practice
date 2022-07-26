@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ellio\\source\\repos\\Dailies\\Daily-s\\Dailies\\Dailies.csproj": {}
+    "C:\\Users\\ellio\\Documents\\Software Dev\\Decisive Dice\\Daily-Coding-Practice\\Dailies\\Dailies.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ellio\\source\\repos\\Dailies\\Daily-s\\Dailies\\Dailies.csproj": {
+    "C:\\Users\\ellio\\Documents\\Software Dev\\Decisive Dice\\Daily-Coding-Practice\\Dailies\\Dailies.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ellio\\source\\repos\\Dailies\\Daily-s\\Dailies\\Dailies.csproj",
+        "projectUniqueName": "C:\\Users\\ellio\\Documents\\Software Dev\\Decisive Dice\\Daily-Coding-Practice\\Dailies\\Dailies.csproj",
         "projectName": "Dailies",
-        "projectPath": "C:\\Users\\ellio\\source\\repos\\Dailies\\Daily-s\\Dailies\\Dailies.csproj",
+        "projectPath": "C:\\Users\\ellio\\Documents\\Software Dev\\Decisive Dice\\Daily-Coding-Practice\\Dailies\\Dailies.csproj",
         "packagesPath": "C:\\Users\\ellio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ellio\\source\\repos\\Dailies\\Daily-s\\Dailies\\obj\\",
+        "outputPath": "C:\\Users\\ellio\\Documents\\Software Dev\\Decisive Dice\\Daily-Coding-Practice\\Dailies\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ellio\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.410\\RuntimeIdentifierGraph.json"
         }
       }
     }
