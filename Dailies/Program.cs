@@ -25,7 +25,7 @@ namespace Dailies
         static void Main(string[] args)
         {
             // Console.WriteLine("Welcome to the daily grind!");
-            Y2022 activeProblem = Y2022.July26th;
+            Y2022 activeProblem = Y2022.July27th;
             string phrase = "";
 
             switch (activeProblem)
@@ -107,10 +107,12 @@ namespace Dailies
                 #region July
 
                 case Y2022.July26th: // Number of trailing zeros of N!
-                    int n = 521;
+                    Console.WriteLine($"{TrailingZeros(521)}");
+                    break;
 
-                    Console.WriteLine($"{TrailingZeros(n)}");
-
+                case Y2022.July27th: // Sum Strings as Numbers
+                    Console.WriteLine($"{sumStrings(" 123 "," 456 ")}");
+                    Console.WriteLine($"{sumStrings(" 131151201344081895336534324866 ", " 151151201344081895336534324866 ")}");
                     break;
 
                 #endregion July
@@ -170,7 +172,8 @@ namespace Dailies
 
             #region July
 
-                July26th
+                July26th,
+                July27th
 
             #endregion July
 
@@ -822,7 +825,7 @@ namespace Dailies
 
         #endregion // Does my number look big in this
 
-        #region Most frequently used words in a text
+            #region Most frequently used words in a text
 
         private static List<string> GetTop3UsedWords(string s)
         {
@@ -891,6 +894,63 @@ namespace Dailies
             }
 
             return c;
+        }
+
+        /// <summary>
+        /// Sum Strings as Numbers
+        /// Given the string representations of two integers, return the string representation of the sum of those integers.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+
+        public static string sumStrings(string a, string b)
+        {
+            // init
+            int n, ia, ib;
+            string ta, tb;
+
+            // Remove Letters
+            if (Regex.IsMatch(a, @"^[a-zA-Z]+$")) a = Regex.Replace(a, "[A-Za-z ]", "");
+            if (Regex.IsMatch(b, @"^[a-zA-Z]+$")) b = Regex.Replace(b, "[A-Za-z ]", "");
+
+            // Remove white spaces
+            a = Regex.Replace(a, @"\s+", "");
+            b = Regex.Replace(b, @"\s+", "");
+
+            // Get number if applicable | also trim spaces if any
+            ia = int.TryParse(a, out n) ? int.Parse(a.Trim()) : 0;
+            ib = int.TryParse(b, out n) ? int.Parse(b.Trim()) : 0;
+
+            // We cant work with numbers above 2,147,483,647 or below -2,147,483,648 so just return the longer of the two strings
+            // If they're the same length then we need to figure out which one is larger
+            if (a.Length == b.Length && ia == 0 && ib == 0)
+            {
+                // They're the same, don't waste time or power going any futher for this one
+                if (a == b) return a;
+
+                // Go from first to last number and see which one's bigger, the winner gets returned
+                for (int i = 0; i < a.Length; i++)
+                {
+                    ta = a.Substring(i, 1);
+                    tb = b.Substring(i, 1);
+
+                    if (ta != tb)
+                    {
+                        return Convert.ToString(_ = int.Parse(ta) > int.Parse(tb) ? a : b);
+                    }
+                }
+            }
+
+            if (a.Length > 1 && ia == 0) return _ = a.Length > b.Length ? a : b;
+            if (b.Length > 1 && ib == 0) return _ = a.Length > b.Length ? a : b;
+
+            return Convert.ToString(ia + ib);
+        }
+
+        public static string sumStringsCursed(string a, string b)
+        {
+            return Convert.ToString(_ = (_ = int.TryParse(a = Regex.Replace(a, "[A-Za-z ]", ""), out int n) ? int.Parse(a = a.Trim()) : 0) + (_ = int.TryParse(b = Regex.Replace(b, "[A-Za-z ]", ""), out n) ? int.Parse(b = b.Trim()) : 0) == 0 ? (_ = int.Parse(b) > int.Parse(a) ? int.Parse(b) : int.Parse(a)) : int.Parse(b) + int.Parse(a));
         }
 
         #endregion July
